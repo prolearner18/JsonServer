@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "测试程序",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "backgroundColor": "#0f0",
+    "selectedColor": "#fcd748",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/tabBar/index.png",
+        "selectedIconPath": "images/tabBar/index_on.png",
+        "text": "主页"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/tabBar/activity.png",
+        "selectedIconPath": "images/tabBar/activity_on.png",
+        "text": "操作"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/tabBar/user.png",
+        "selectedIconPath": "images/tabBar/user_on.png",
+        "text": "信息"
+      }
+    ]
+  },
+  "debug": true
+}
