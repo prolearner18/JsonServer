@@ -236,14 +236,24 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Extensions\HtmlExtensions.cs" />
+    <Compile Include="Extensions\LinqOrderByColumnsNameExtensions.cs" />
+    <Compile Include="Extensions\PageListExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Appdata.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\OrderQuery.cs" />
+    <Compile Include="Repository\OrderRepository.cs" />
+    <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\OrderServiceI.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
