@@ -3,7 +3,7 @@ namespace JsonServer.Models
     using global::Repository.Pattern.Ef6;
     using System.Data.Entity;
 
-    public partial class Appdata : DataContext
+    public partial class Appdata : DbContext
     {
         public Appdata()
             : base("name=Appdata")

@@ -59,7 +59,7 @@ namespace JsonServer
             container.RegisterType<System.Data.Entity.DbContext, ApplicationDbContext>(new HierarchicalLifetimeManager());
             container.RegisterType<ApplicationDbContext>(new HierarchicalLifetimeManager());
             container.RegisterType<IUnitOfWorkAsync, UnitOfWork>(new PerRequestLifetimeManager());
-            container.RegisterType<IDataContextAsync, JsonServer.Models.Appdata>(new PerRequestLifetimeManager());//数据上下文
+           // container.RegisterType<IDataContextAsync, JsonServer.Models.Appdata>(new PerRequestLifetimeManager());//数据上下文
             container.RegisterType<IRepositoryAsync<JsonServer.Models.Order>, Repository<JsonServer.Models.Order>>();
             container.RegisterType<OrderServiceI, OrderService>();
             //container.RegisterInstance<HelpController>(new HelpController());//实例化HelpController
