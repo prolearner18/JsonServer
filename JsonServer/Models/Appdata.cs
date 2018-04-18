@@ -1,10 +1,7 @@
 namespace JsonServer.Models
 {
-    using System;
+    using global::Repository.Pattern.Ef6;
     using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
-    using Repository.Pattern.Ef6;
 
     public partial class Appdata : DataContext
     {

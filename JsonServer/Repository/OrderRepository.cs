@@ -13,7 +13,7 @@ namespace JsonServer.Repository
         {
             var query = repository
                .Queryable()
-               .Where(x => x.Id == id );
+               .Where(x => x.Id.Equals(id) );
             return query;
 
         }

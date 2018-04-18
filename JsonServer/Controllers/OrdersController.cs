@@ -11,29 +11,23 @@ using System.Web.Http.Description;
 using JsonServer.Models;
 using JsonServer.Services;
 using Repository.Pattern.UnitOfWork;
+using JsonServer.Extensions;
 
 namespace JsonServer.Controllers
 {
     public class OrdersController : ApiController
     {
-        
-        private readonly IUnitOfWorkAsync _unitOfWork;
-        public readonly OrderServiceI _orderService;
-        public OrdersController(IUnitOfWorkAsync unitOfWork,OrderServiceI orderService) {
-            _unitOfWork = unitOfWork;
-            _orderService = orderService;
-        }
-        // GET: api/Orders
-        public IQueryable<Order> GetOrders()
-        {
-            return _orderService.Query().Select().ToList();
-        }
 
-        // GET: api/Orders/5
+
+        Appdata db = new Appdata();
+        // GET: api/Orders
+
+
+       // GET: api/Orders/5
         [ResponseType(typeof(Order))]
         public IHttpActionResult GetOrder(string id)
         {
-            Order order = db.Order.Find(id);
+            Order order=db.Order.Find(id);
             if (order == null)
             {
                 return NotFound();

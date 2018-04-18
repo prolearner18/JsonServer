@@ -9,7 +9,7 @@ namespace JsonServer.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             ContextKey = "JsonServer.Models.Appdata";
         }
 

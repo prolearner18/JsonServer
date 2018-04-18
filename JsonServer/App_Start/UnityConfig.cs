@@ -1,9 +1,11 @@
 ﻿using JsonServer.Models;
+using JsonServer.Services;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Repository.Pattern.DataContext;
 using Repository.Pattern.Ef6;
+using Repository.Pattern.Repositories;
 using Repository.Pattern.UnitOfWork;
 using System;
 using System.Web;
@@ -58,6 +60,8 @@ namespace JsonServer
             container.RegisterType<ApplicationDbContext>(new HierarchicalLifetimeManager());
             container.RegisterType<IUnitOfWorkAsync, UnitOfWork>(new PerRequestLifetimeManager());
             container.RegisterType<IDataContextAsync, JsonServer.Models.Appdata>(new PerRequestLifetimeManager());//数据上下文
+            container.RegisterType<IRepositoryAsync<JsonServer.Models.Order>, Repository<JsonServer.Models.Order>>();
+            container.RegisterType<OrderServiceI, OrderService>();
             //container.RegisterInstance<HelpController>(new HelpController());//实例化HelpController
         }
     }
