@@ -15,18 +15,18 @@ namespace JsonServer.Models
         public string Id { get; set; }
 
         [StringLength(20)]
-        public string orderkey { get; set; }
+        public string Orderkey { get; set; }
 
         [StringLength(30)]
-        public string supplier { get; set; }
+        public string Supplier { get; set; }
 
         [Column(TypeName = "numeric")]
-        public decimal? qty { get; set; }
+        public decimal? Qty { get; set; }
 
         [Column(TypeName = "numeric")]
-        public decimal? unitprice { get; set; }
+        public decimal? Unitprice { get; set; }
 
         [Column(TypeName = "numeric")]
-        public decimal? amount { get; set; }
+        public decimal? Amount { get; set; }
     }
 }

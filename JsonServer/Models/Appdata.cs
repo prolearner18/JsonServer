@@ -3,7 +3,7 @@ namespace JsonServer.Models
     using global::Repository.Pattern.Ef6;
     using System.Data.Entity;
 
-    public partial class Appdata : DbContext
+    public partial class Appdata : DataContext
     {
         public Appdata()
             : base("name=Appdata")
@@ -19,23 +19,23 @@ namespace JsonServer.Models
                 .IsFixedLength();
 
             modelBuilder.Entity<Order>()
-                .Property(e => e.orderkey)
+                .Property(e => e.Orderkey)
                 .IsFixedLength();
 
             modelBuilder.Entity<Order>()
-                .Property(e => e.supplier)
+                .Property(e => e.Supplier)
                 .IsFixedLength();
 
             modelBuilder.Entity<Order>()
-                .Property(e => e.qty)
+                .Property(e => e.Qty)
                 .HasPrecision(18, 0);
 
             modelBuilder.Entity<Order>()
-                .Property(e => e.unitprice)
+                .Property(e => e.Unitprice)
                 .HasPrecision(18, 0);
 
             modelBuilder.Entity<Order>()
-                .Property(e => e.amount)
+                .Property(e => e.Amount)
                 .HasPrecision(18, 0);
         }
     }

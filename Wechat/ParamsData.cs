@@ -34,8 +34,7 @@ namespace Wechat
         */
         public object GetValue(string key)
         {
-            object o = null;
-            m_values.TryGetValue(key, out o);
+            m_values.TryGetValue(key, out object o);
             return o;
         }
 
@@ -46,8 +45,7 @@ namespace Wechat
          */
         public bool IsSet(string key)
         {
-            object o = null;
-            m_values.TryGetValue(key, out o);
+            m_values.TryGetValue(key, out object o);
             if (null != o)
                 return true;
             else
@@ -119,7 +117,7 @@ namespace Wechat
             try
             {
                 //2015-06-29 错误是没有签名
-                if (IsSet("return_code") && GetValue("return_code") != "SUCCESS")
+                if (IsSet("return_code") && (string)GetValue("return_code") != "SUCCESS")
                 {
                     return m_values;
                 }

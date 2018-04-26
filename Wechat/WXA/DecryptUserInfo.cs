@@ -40,11 +40,14 @@ namespace Wechat.WXA
                 aesKey = aesKey.Replace(" ", "+");
                 inputdata = inputdata.Replace(" ", "+");
                 byte[] encryptedData = Convert.FromBase64String(inputdata);
-                RijndaelManaged rijndaelCipher = new RijndaelManaged();
-                rijndaelCipher.Key = Convert.FromBase64String(aesKey); // Encoding.UTF8.GetBytes(AesKey);  
-                rijndaelCipher.IV = Convert.FromBase64String(aesIV);// Encoding.UTF8.GetBytes(AesIV);  
-                rijndaelCipher.Mode = CipherMode.CBC;
-                rijndaelCipher.Padding = PaddingMode.PKCS7;
+                RijndaelManaged rijndaelCipher = new RijndaelManaged()
+                {
+                   Key = Convert.FromBase64String(aesKey), // Encoding.UTF8.GetBytes(AesKey);  
+                IV = Convert.FromBase64String(aesIV),// Encoding.UTF8.GetBytes(AesIV);  
+                Mode = CipherMode.CBC,
+                Padding = PaddingMode.PKCS7
+            };
+             
                 ICryptoTransform transform = rijndaelCipher.CreateDecryptor();
                 byte[] plainText = transform.TransformFinalBlock(encryptedData, 0, encryptedData.Length);
                 string result = Encoding.UTF8.GetString(plainText);
@@ -60,20 +63,20 @@ namespace Wechat.WXA
 
         public class UserInfo
         {
-            public string openId { get; set; }
-            public string nickName { get; set; }
-            public int gender { get; set; }
-            public string city { get; set; }
-            public string province { get; set; }
-            public string country { get; set; }
-            public string avatarUrl { get; set; }
-            public string unionId { get; set; }
-            public Watermark watermark { get; set; }
+            public string OpenId { get; set; }
+            public string NickName { get; set; }
+            public int Gender { get; set; }
+            public string City { get; set; }
+            public string Province { get; set; }
+            public string Country { get; set; }
+            public string AvatarUrl { get; set; }
+            public string UnionId { get; set; }
+            public Watermark WaterMark { get; set; }
         }
         public class Watermark
         {
-            public string appid { get; set; }
-            public long timestamp { get; set; }
+            public string Appid { get; set; }
+            public long TimeStamp { get; set; }
         }
 
         #region 验证串获取函数(不含-)
