@@ -1,8 +1,5 @@
 ﻿
 
-
-
-
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -57,8 +54,8 @@ namespace JsonServer.Controllers
             int pagenum = offset / limit + 1;
             var menuitems = _menuItemService.Query(new MenuItemQuery().WithAnySearch(search)).Include(m => m.Parent).OrderBy(n => n.OrderBy(sort, order)).SelectPage(pagenum, limit, out totalCount);
 
-            var rows = menuitems.Select(n => new { ParentTitle = (n.Parent == null ? "" : n.Parent.Title),  n.Id,  n.Title,  n.Description,  n.Code,  n.Url,  n.IsEnabled,  n.ParentId }).ToList();
-            var pagelist = new { total = totalCount,  rows };
+            var rows = menuitems.Select(n => new { ParentTitle = (n.Parent == null ? "" : n.Parent.Title), Id = n.Id, Title = n.Title, Description = n.Description, Code = n.Code, Url = n.Url, IsEnabled = n.IsEnabled, ParentId = n.ParentId }).ToList();
+            var pagelist = new { total = totalCount, rows = rows };
             return Json(pagelist, JsonRequestBehavior.AllowGet);
         }
 
@@ -82,9 +79,8 @@ namespace JsonServer.Controllers
         // GET: MenuItems/Create
         public ActionResult Create()
         {
-            MenuItem menuItem = new MenuItem() {
-                IsEnabled = true
-            };
+            MenuItem menuItem = new MenuItem();
+            menuItem.IsEnabled = true;
             //set default value
             var menuitemRepository = _unitOfWork.Repository<MenuItem>();
             ViewBag.ParentId = new SelectList(menuitemRepository.Queryable(), "Id", "Title");
@@ -281,7 +277,7 @@ namespace JsonServer.Controllers
             var submenus = _menuItemService.GetSubMenusByParentId(id);
             if (Request.IsAjaxRequest())
             {
-                return Json(submenus.Select(n => new { ParentTitle = (n.Parent == null ? "" : n.Parent.Title),  n.Id,  n.Title,  n.Description,  n.Code,  n.Url,  n.IsEnabled,  n.ParentId }), JsonRequestBehavior.AllowGet);
+                return Json(submenus.Select(n => new { ParentTitle = (n.Parent == null ? "" : n.Parent.Title), Id = n.Id, Title = n.Title, Description = n.Description, Code = n.Code, Url = n.Url, IsEnabled = n.IsEnabled, ParentId = n.ParentId }), JsonRequestBehavior.AllowGet);
             }
             return View(submenus);
 

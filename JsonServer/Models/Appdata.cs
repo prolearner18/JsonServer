@@ -9,34 +9,21 @@ namespace JsonServer.Models
             : base("name=Appdata")
         {
         }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
 
-        public virtual DbSet<Order> Order { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Order>()
-                .Property(e => e.Id)
-                .IsFixedLength();
+        public System.Data.Entity.DbSet<JsonServer.Models.Company> Companies { get; set; }
 
-            modelBuilder.Entity<Order>()
-                .Property(e => e.Orderkey)
-                .IsFixedLength();
+        public System.Data.Entity.DbSet<JsonServer.Models.Department> Departments { get; set; }
 
-            modelBuilder.Entity<Order>()
-                .Property(e => e.Supplier)
-                .IsFixedLength();
+        public System.Data.Entity.DbSet<JsonServer.Models.Work> Works { get; set; }
 
-            modelBuilder.Entity<Order>()
-                .Property(e => e.Qty)
-                .HasPrecision(18, 0);
+        public System.Data.Entity.DbSet<JsonServer.Models.Employee> Employees { get; set; }
 
-            modelBuilder.Entity<Order>()
-                .Property(e => e.Unitprice)
-                .HasPrecision(18, 0);
-
-            modelBuilder.Entity<Order>()
-                .Property(e => e.Amount)
-                .HasPrecision(18, 0);
-        }
+        public System.Data.Entity.DbSet<JsonServer.Models.BaseCode> BaseCodes { get; set; }
+        public System.Data.Entity.DbSet<JsonServer.Models.CodeItem> CodeItems { get; set; }
     }
 }

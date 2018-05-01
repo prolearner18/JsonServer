@@ -1,7 +1,4 @@
 ﻿
-
-
-
 @using JsonServer.Models 
 
 @model IEnumerable<BaseCode>
@@ -13,7 +10,6 @@
     ViewBag.Title = "Index";
 }
  
-
 <div class="container-fluid">
     <!-- Page Heading -->
     <div class="row">
@@ -66,9 +62,9 @@
                     <th data-field="Id" data-sortable="true"  data-visible="false" >
              @Html.DisplayNameFor(model => model.Id)
             </th>
-                        <th data-field="CodeType" data-sortable="true" >
-             @Html.DisplayNameFor(model => model.CodeType)
-        </th>
+                        <th data-field="CodeType" data-sortable="true" data-align="right">
+                            @Html.DisplayNameFor(model => model.CodeType)
+                        </th>
                         <th data-field="Description" data-sortable="true" >
              @Html.DisplayNameFor(model => model.Description)
         </th>

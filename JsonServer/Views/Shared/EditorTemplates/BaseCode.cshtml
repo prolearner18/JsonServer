@@ -1,7 +1,8 @@
-﻿
-@model String
+﻿@model String
+
 @Html.DropDownListFor(model => model, new[] {new SelectListItem() {  Value="" , Text="---Select---"}}, new { @class = "form-control" })
-<script  type="text/javascript" >
+
+<script>
     $(document).ready(function (e) {
         
         var type='@ViewData["CodeType"]';

@@ -1,8 +1,5 @@
 ﻿
 
-
-
-
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -64,10 +61,9 @@ namespace JsonServer.Controllers
             foreach (var role in roles)
             {
                 var mymenus = _roleMenuService.GetByRoleName(role.Name);
-                RoleView r = new RoleView()
-                {   RoleName = role.Name,
-                Count = mymenus.Count()};
-             
+                RoleView r = new RoleView();
+                r.RoleName = role.Name;
+                r.Count = mymenus.Count();
                 roleview.Add(r);
             }
             ViewBag.Menus = menus;
@@ -110,8 +106,8 @@ namespace JsonServer.Controllers
             int pagenum = offset / limit + 1;
             var rolemenus = _roleMenuService.Query(new RoleMenuQuery().WithAnySearch(search)).Include(r => r.MenuItem).OrderBy(n => n.OrderBy(sort, order)).SelectPage(pagenum, limit, out totalCount);
 
-            var rows = rolemenus.Select(n => new { MenuItemTitle = (n.MenuItem == null ? "" : n.MenuItem.Title),  n.Id,  n.RoleName,  n.MenuId,  n.IsEnabled }).ToList();
-            var pagelist = new { total = totalCount,  rows };
+            var rows = rolemenus.Select(n => new { MenuItemTitle = (n.MenuItem == null ? "" : n.MenuItem.Title), Id = n.Id, RoleName = n.RoleName, MenuId = n.MenuId, IsEnabled = n.IsEnabled }).ToList();
+            var pagelist = new { total = totalCount, rows = rows };
             return Json(pagelist, JsonRequestBehavior.AllowGet);
         }
 

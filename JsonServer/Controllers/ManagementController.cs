@@ -1,7 +1,4 @@
 ﻿
-
-
-
  
 
 using Microsoft.AspNet.Identity;
@@ -71,8 +68,8 @@ namespace JsonServer.Controllers
             }
             catch(InvalidOperationException ex)
             {
-                ViewBag.MaxRolesCount = 0;
                 Console.Write(ex.Data);
+                ViewBag.MaxRolesCount = 0;
             }
             return View("Index", new ManagementViewModel
             {

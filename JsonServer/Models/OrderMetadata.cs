@@ -1,18 +1,4 @@
-﻿
-
-
-
-
-
-
-
-
-
-
-
-
-
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace JsonServer.Models
@@ -24,38 +10,25 @@ namespace JsonServer.Models
 
     public partial class OrderMetadata
     {
+        [Display(Name = "订单明细")]
+        public OrderDetail OrderDetails { get; set; }
 
         [Required(ErrorMessage = "Please enter : Id")]
-
         [Display(Name = "Id")]
+        public int Id { get; set; }
 
-        public string Id { get; set; }
+        [Required(ErrorMessage = "Please enter : 客户")]
+        [Display(Name = "客户")]
+        [MaxLength(20)]
+        public string Customer { get; set; }
 
+        [Display(Name = "发货地址")]
+        [MaxLength(50)]
+        public string ShippingAddress { get; set; }
 
-        [Display(Name = "Orderkey")]
-
-        public string Orderkey { get; set; }
-
-
-        [Display(Name = "Supplier")]
-
-        public string Supplier { get; set; }
-
-
-        [Display(Name = "Qty")]
-
-        public decimal Qty { get; set; }
-
-
-        [Display(Name = "Unitprice")]
-
-        public decimal Unitprice { get; set; }
-
-
-        [Display(Name = "Amount")]
-
-        public decimal Amount { get; set; }
-
+        [Required(ErrorMessage = "Please enter : 订单日期")]
+        [Display(Name = "订单日期")]
+        public DateTime OrderDate { get; set; }
 
     }
 }

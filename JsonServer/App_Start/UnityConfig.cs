@@ -8,6 +8,7 @@ using Repository.Pattern.Ef6;
 using Repository.Pattern.Repositories;
 using Repository.Pattern.UnitOfWork;
 using System;
+using System.Data.Entity;
 using System.Web;
 using Unity;
 using Unity.AspNet.Mvc;
@@ -54,15 +55,43 @@ namespace JsonServer
 
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
-            container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(new PerRequestLifetimeManager());
-            container.RegisterType<IAuthenticationManager>(new InjectionFactory(o => HttpContext.Current.GetOwinContext().Authentication));
-            container.RegisterType<System.Data.Entity.DbContext, ApplicationDbContext>(new HierarchicalLifetimeManager());
-            container.RegisterType<ApplicationDbContext>(new HierarchicalLifetimeManager());
-            container.RegisterType<IUnitOfWorkAsync, UnitOfWork>(new PerRequestLifetimeManager());
-           // container.RegisterType<IDataContextAsync, JsonServer.Models.Appdata>(new PerRequestLifetimeManager());//数据上下文
-            container.RegisterType<IRepositoryAsync<JsonServer.Models.Order>, Repository<JsonServer.Models.Order>>();
-            container.RegisterType<IOrderService, OrderService>();
+
+            container.RegisterType<IDataContextAsync, JsonServer.Models.Appdata>(new PerRequestLifetimeManager());//数据上下文
+           
             //container.RegisterInstance<HelpController>(new HelpController());//实例化HelpController
+
+
+
+            container.RegisterType<DbContext, ApplicationDbContext>(new HierarchicalLifetimeManager());
+            container.RegisterType<ApplicationDbContext>(new HierarchicalLifetimeManager());
+
+            container.RegisterType<IRoleStore<ApplicationRole, string>, RoleStore<ApplicationRole>>(new HierarchicalLifetimeManager());
+            container.RegisterType<IUserStore<ApplicationUser>, UserStore<ApplicationUser>>(new HierarchicalLifetimeManager());
+            container.RegisterType<IAuthenticationManager>(new InjectionFactory(o => HttpContext.Current.GetOwinContext().Authentication));
+            //container.RegisterType<IAuthenticationManager>(new InjectionFactory(o => HttpContext.Current.GetOwinContext().Authentication));
+            container.RegisterType<IUnitOfWorkAsync, UnitOfWork>(new PerRequestLifetimeManager());
+            
+
+            container.RegisterType<IRepositoryAsync<Product>, Repository<Product>>();
+            container.RegisterType<IProductService, ProductService>();
+            container.RegisterType<IRepositoryAsync<Category>, Repository<Category>>();
+            container.RegisterType<ICategoryService, CategoryService>();
+            container.RegisterType<IRepositoryAsync<Order>, Repository<Order>>();
+            container.RegisterType<IOrderService, OrderService>();
+
+            container.RegisterType<IRepositoryAsync<Company>, Repository<Company>>();
+            container.RegisterType<ICompanyService, CompanyService>();
+
+            container.RegisterType<IRepositoryAsync<Department>, Repository<Department>>();
+            container.RegisterType<IDepartmentService, DepartmentService>();
+
+            container.RegisterType<IRepositoryAsync<Work>, Repository<Work>>();
+            container.RegisterType<IWorkService, WorkService>();
+
+            container.RegisterType<IRepositoryAsync<BaseCode>, Repository<BaseCode>>();
+            container.RegisterType<IBaseCodeService, BaseCodeService>();
+            container.RegisterType<IRepositoryAsync<CodeItem>, Repository<CodeItem>>();
+
         }
     }
 }

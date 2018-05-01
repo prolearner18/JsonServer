@@ -1,14 +1,15 @@
 ﻿
-
-
-
 @using JsonServer.Models
 
 @model IEnumerable<ApplicationUser>
 @{
-    ViewBag.Title = "Users";
+    ViewBag.Title = "Index";
 }
- 
+<style type='text/css'>
+    /*設定 數字靠右*/
+    td:nth-child(2n) {
+        text-align: right;
+    }
 </style>
 <div class="container-fluid">
     <!-- Page Heading -->
@@ -121,7 +122,7 @@
 
         }
 
-        //jquery post /AccountManage/Delete/:id
+        //jquery post /AccountManager/Delete/:id
         function deleteUsers(id) {
             var url = '@Url.Action("Delete")';
             bootbox.dialog({

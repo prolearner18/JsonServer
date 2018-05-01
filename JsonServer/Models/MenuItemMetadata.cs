@@ -1,11 +1,8 @@
 ﻿
-
-
-
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace JsonServer.Models
+namespace WebApp.Models
 {
     [MetadataType(typeof(MenuItemMetadata))]
     public partial class MenuItem

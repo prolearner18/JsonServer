@@ -1,7 +1,4 @@
 ﻿
-
-
-
  
 
 using System;
@@ -58,7 +55,7 @@ namespace JsonServer.Controllers
         {
             return View();
         }
-        // Get :AccountManage/PageList
+        // Get :AccountManager/PageList
         // For Index View Boostrap-Table load  data 
         [HttpGet]
         public ActionResult PageList(int offset = 0, int limit = 10, string search = "", string sort = "", string order = "")
@@ -69,8 +66,8 @@ namespace JsonServer.Controllers
             var users = _userManager.Users.Where(n => n.UserName.Contains(search) || n.Email.Contains(search) || n.PhoneNumber.Contains(search)).OrderByName(sort, order);
             totalCount = users.Count();
             var datalist = users.Skip(offset).Take(limit);
-            var rows = datalist.Select(n => new {  n.Id,  n.UserName,  n.Email,  n.PhoneNumber,  n.AccessFailedCount,  n.LockoutEnabled,  n.LockoutEndDateUtc }).ToList();
-            var pagelist = new { total = totalCount,  rows };
+            var rows = datalist.Select(n => new { Id = n.Id, UserName = n.UserName, Email = n.Email, PhoneNumber = n.PhoneNumber, AccessFailedCount = n.AccessFailedCount, LockoutEnabled = n.LockoutEnabled, LockoutEndDateUtc = n.LockoutEndDateUtc }).ToList();
+            var pagelist = new { total = totalCount, rows = rows };
             return Json(pagelist, JsonRequestBehavior.AllowGet);
         }
 
@@ -97,7 +94,7 @@ namespace JsonServer.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "AccountManage");
+                    return RedirectToAction("Index", "AccountManager");
                 }
                 AddErrors(result);
             }
@@ -131,7 +128,7 @@ namespace JsonServer.Controllers
                 var result = await UserManager.UpdateAsync(item);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "AccountManage");
+                    return RedirectToAction("Index", "AccountManager");
                 }
                 AddErrors(result);
             }
@@ -152,7 +149,7 @@ namespace JsonServer.Controllers
                     {
                         return Json(new { success = true }, JsonRequestBehavior.AllowGet);
                     }
-                    return RedirectToAction("Index", "AccountManage");
+                    return RedirectToAction("Index", "AccountManager");
                 }
                 AddErrors(result);
             }
