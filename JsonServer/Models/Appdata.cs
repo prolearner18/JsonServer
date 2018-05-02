@@ -15,15 +15,15 @@ namespace JsonServer.Models
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
 
-        public System.Data.Entity.DbSet<JsonServer.Models.Company> Companies { get; set; }
+        public System.Data.Entity.DbSet<Company> Companies { get; set; }
 
-        public System.Data.Entity.DbSet<JsonServer.Models.Department> Departments { get; set; }
+        public System.Data.Entity.DbSet<Department> Departments { get; set; }
 
-        public System.Data.Entity.DbSet<JsonServer.Models.Work> Works { get; set; }
+        public System.Data.Entity.DbSet<Work> Works { get; set; }
 
-        public System.Data.Entity.DbSet<JsonServer.Models.Employee> Employees { get; set; }
+        public System.Data.Entity.DbSet<Employee> Employees { get; set; }
 
-        public System.Data.Entity.DbSet<JsonServer.Models.BaseCode> BaseCodes { get; set; }
-        public System.Data.Entity.DbSet<JsonServer.Models.CodeItem> CodeItems { get; set; }
+        public System.Data.Entity.DbSet<BaseCode> BaseCodes { get; set; }
+        public System.Data.Entity.DbSet<CodeItem> CodeItems { get; set; }
     }
 }

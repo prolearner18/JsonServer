@@ -265,14 +265,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805010517281_int.cs" />
-    <Compile Include="Migrations\201805010517281_int.Designer.cs">
-      <DependentUpon>201805010517281_int.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805011357007_i.cs" />
-    <Compile Include="Migrations\201805011357007_i.Designer.cs">
-      <DependentUpon>201805011357007_i.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Appdata.cs" />
@@ -339,6 +331,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-JsonServer-20180417112759.mdf" />
+    <Content Include="App_Data\aspnet-JsonServer-20180417112759_log.ldf">
+      <DependentUpon>aspnet-JsonServer-20180417112759.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-table.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -1241,9 +1237,7 @@
     <Content Include="Views\Works\EditForm.cshtml" />
     <Content Include="Views\Works\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
@@ -1311,14 +1305,6 @@
       <Project>{7c2fe7cc-55fd-40dc-8525-ad874daa04d6}</Project>
       <Name>Wechat</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805010517281_int.resx">
-      <DependentUpon>201805010517281_int.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805011357007_i.resx">
-      <DependentUpon>201805011357007_i.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
