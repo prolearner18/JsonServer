@@ -47,8 +47,8 @@ namespace JsonServer.Controllers
             int totalCount = 0;
             int pagenum = offset / limit +1;
                         var orders  = _orderService.Query(new OrderQuery().WithAnySearch(search)).OrderBy(n=>n.OrderBy(sort,order)).SelectPage(pagenum, limit, out totalCount);
-                        var rows = orders .Select(  n => new {  Id = n.Id , Customer = n.Customer , ShippingAddress = n.ShippingAddress , OrderDate = n.OrderDate }).ToList();
-            var pagelist = new { total = totalCount, rows = rows };
+                        var rows = orders .Select(  n => new {   n.Id ,  n.Customer , n.ShippingAddress ,  n.OrderDate }).ToList();
+            var pagelist = new { total = totalCount,  rows };
             return Json(pagelist, JsonRequestBehavior.AllowGet);
         }
 
@@ -72,8 +72,10 @@ namespace JsonServer.Controllers
         // GET: Orders/Create
         public ActionResult Create()
         {
-            Order order = new Order();
-            order.OrderDate = DateTime.Now;
+            Order order = new Order
+            {
+                OrderDate = DateTime.Now
+            };
             return View(order);
         }
 
@@ -266,7 +268,7 @@ namespace JsonServer.Controllers
             var orderdetails = _orderService.GetOrderDetailsByOrderId(id);
             if (Request.IsAjaxRequest())
             {
-                return Json(orderdetails.Select( n => new { OrderCustomer = n.Order.Customer ,ProductName = n.Product.Name , Id = n.Id , ProductId = n.ProductId , Qty = n.Qty , Price = n.Price , Amount = n.Amount , OrderId = n.OrderId }),JsonRequestBehavior.AllowGet);
+                return Json(orderdetails.Select( n => new { OrderCustomer = n.Order.Customer ,ProductName = n.Product.Name , n.Id ,  n.ProductId , n.Qty ,  n.Price ,  n.Amount ,  n.OrderId }),JsonRequestBehavior.AllowGet);
             }  
             return View(orderdetails); 
 

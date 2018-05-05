@@ -51,8 +51,8 @@ namespace WebApp.Controllers
             int totalCount = 0;
             int pagenum = offset / limit + 1;
             var basecodes = _baseCodeService.Query(new BaseCodeQuery().WithAnySearch(search)).Include(n => n.CodeItems).OrderBy(n => n.OrderBy(sort, order)).SelectPage(pagenum, limit, out totalCount);
-            var rows = basecodes.Select(n => new { Id = n.Id, CodeType = n.CodeType, Description = n.Description, CodeItems = String.Join("", n.CodeItems.Select(x => String.Format("<br>Code:{0} Text:{1}", x.Code, x.Text))) }).ToList();
-            var pagelist = new { total = totalCount, rows = rows };
+            var rows = basecodes.Select(n => new { n.Id, n.CodeType,  n.Description, CodeItems = String.Join("", n.CodeItems.Select(x => String.Format("<br>Code:{0} Text:{1}", x.Code, x.Text))) }).ToList();
+            var pagelist = new { total = totalCount,  rows };
             return Json(pagelist, JsonRequestBehavior.AllowGet);
         }
 
@@ -266,7 +266,7 @@ namespace WebApp.Controllers
             var codeitems = _baseCodeService.GetCodeItemsByBaseCodeId(id);
             if (Request.IsAjaxRequest())
             {
-                return Json(codeitems.Select(n => new { BaseCodeCodeType = n.BaseCode.CodeType, Id = n.Id, Code = n.Code, Text = n.Text, BaseCodeId = n.BaseCodeId }), JsonRequestBehavior.AllowGet);
+                return Json(codeitems.Select(n => new { BaseCodeCodeType = n.BaseCode.CodeType,  n.Id, n.Code,  n.Text,  n.BaseCodeId }), JsonRequestBehavior.AllowGet);
             }
             return View(codeitems);
 
@@ -278,7 +278,7 @@ namespace WebApp.Controllers
             var items = _baseCodeService.GetCodeItemsByCodeType(codetype);
             if (Request.IsAjaxRequest())
             {
-                return Json(items.Select(n => new { Code = n.Code,  Text = n.Text }), JsonRequestBehavior.AllowGet);
+                return Json(items.Select(n => new {  n.Code,   n.Text }), JsonRequestBehavior.AllowGet);
             }
             return View(items);
         }

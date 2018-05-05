@@ -52,8 +52,8 @@ namespace JsonServer.Controllers
             int totalCount = 0;
             int pagenum = offset / limit +1;
                         var companies  = _companyService.Query(new CompanyQuery().WithAnySearch(search)).OrderBy(n=>n.OrderBy(sort,order)).SelectPage(pagenum, limit, out totalCount);
-                        var rows = companies .Select(  n => new {  Id = n.Id , Name = n.Name , Address = n.Address , City = n.City , Province = n.Province , RegisterDate = n.RegisterDate , Employees = n.Employees }).ToList();
-            var pagelist = new { total = totalCount, rows = rows };
+                        var rows = companies .Select(  n => new {   n.Id ,  n.Name ,  n.Address ,  n.City ,  n.Province ,  n.RegisterDate ,  n.Employees }).ToList();
+            var pagelist = new { total = totalCount,  rows };
             return Json(pagelist, JsonRequestBehavior.AllowGet);
         }
 
@@ -337,7 +337,7 @@ namespace JsonServer.Controllers
             var departments = _companyService.GetDepartmentsByCompanyId(id);
             if (Request.IsAjaxRequest())
             {
-                return Json(departments.Select( n => new { CompanyName = n.Company.Name , Id = n.Id , Name = n.Name , Manager = n.Manager , CompanyId = n.CompanyId }),JsonRequestBehavior.AllowGet);
+                return Json(departments.Select( n => new { CompanyName = n.Company.Name ,  n.Id ,  n.Name ,  n.Manager ,  n.CompanyId }),JsonRequestBehavior.AllowGet);
             }  
             return View(departments); 
 
@@ -349,7 +349,7 @@ namespace JsonServer.Controllers
             var employee = _companyService.GetEmployeeByCompanyId(id);
             if (Request.IsAjaxRequest())
             {
-                return Json(employee.Select( n => new { CompanyName = n.Company.Name , Id = n.Id , Name = n.Name , Sex = n.Sex , Age = n.Age , Brithday = n.Brithday.ToShortDateString() , CompanyId = n.CompanyId }),JsonRequestBehavior.AllowGet);
+                return Json(employee.Select( n => new { CompanyName = n.Company.Name ,  n.Id ,  n.Name ,  n.Sex ,  n.Age , Brithday = n.Brithday.ToShortDateString() ,  n.CompanyId }),JsonRequestBehavior.AllowGet);
             }  
             return View(employee); 
 
